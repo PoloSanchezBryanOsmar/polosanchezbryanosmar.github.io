@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Esquiteria</title>
+    <style>
+        body {
+            background-color: #f5f5dc; /* Color crema */
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #FF5733;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Formulario de Esquites -->
+    <h2 style="color: #FF5733;">Formulario de Esquites</h2>
+
+    <form onsubmit="return enviarFormulario();">
+        <!-- Campo para el nombre del cliente -->
+        <label for="cliente">Cliente:</label><br>
+        <input type="text" id="cliente" name="cliente" placeholder="Escribe tu nombre" required><br><br>
+
+        <!-- Campo para el teléfono -->
+        <label for="telefono">Teléfono:</label><br>
+        <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu teléfono" required><br><br>
+
+        <!-- Selección para tamaño de esquites -->
+        <label for="tamano">Tamaño de Esquites:</label><br>
+        <select id="tamano" name="tamano">
+            <option value="grande">Grande</option>
+            <option value="mediano">Mediano</option>
+            <option value="pequeno">Pequeño</option>
+        </select><br><br>
+
+        <!-- Selección para tipo de esquite -->
+        <label for="tipo">Tipo de Esquite:</label><br>
+        <select id="tipo" name="tipo">
+            <option value="normal">Normal</option>
+            <option value="tostiesquite">Tostiesquite</option>
+            <option value="doriesquite">Doriesquite</option>
+        </select><br><br>
+
+        <!-- Selección para opción con chapulines -->
+        <label>¿Con chapulines?</label><br>
+        <input type="radio" id="chapulines_si" name="chapulines" value="si">
+        <label for="chapulines_si">Sí</label><br>
+        <input type="radio" id="chapulines_no" name="chapulines" value="no">
+        <label for="chapulines_no">No</label><br><br>
+
+        <!-- Selección para opción con patas de pollo -->
+        <label>¿Patas de pollo?</label><br>
+        <input type="radio" id="patas_si" name="patas" value="si">
+        <label for="patas_si">Sí</label><br>
+        <input type="radio" id="patas_no" name="patas" value="no">
+        <label for="patas_no">No</label><br><br>
+
+        <!-- Opciones de ingredientes -->
+        <label>Ingredientes:</label><br>
+        <input type="checkbox" id="mayonesa" name="ingredientes" value="mayonesa">
+        <label for="mayonesa">Mayonesa</label><br>
+        <input type="checkbox" id="aguacate" name="ingredientes" value="aguacate">
+        <label for="aguacate">Aguacate</label><br>
+        <input type="checkbox" id="queso" name="ingredientes" value="queso">
+        <label for="queso">Queso</label><br>
+        <input type="checkbox" id="sal" name="ingredientes" value="sal">
+        <label for="sal">Sal</label><br><br>
+
+        <!-- Campo para seleccionar fecha -->
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" name="fecha"><br><br>
+
+        <!-- Botones de cancelar y enviar -->
+        <button type="reset">Cancelar</button>
+        <input type="submit" value="Enviar"></input>
+
+    </form>
+
+    <!-- Texto de confirmación que aparecerá al enviar -->
+    <p id="mensaje" style="display:none;">Formulario de esquites recibido</p>
+
+    <!-- Tabla donde se mostrará la información -->
+    <table id="tablaInfo" style="display:none;">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Tamaño</th>
+                <th>Tipo</th>
+                <th>Chapulines</th>
+                <th>Patas</th>
+                <th>Ingredientes</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+        </tbody>
+    </table>
+
+    <!-- Script para manejar el formulario -->
+    <script>
+        function enviarFormulario() {
+            // Obtiene los valores del formulario
+            const cliente = document.getElementById("cliente").value;
+            const telefono = document.getElementById("telefono").value;
+            const tamano = document.getElementById("tamano").value;
+            const tipo = document.getElementById("tipo").value;
+            const chapulines = document.querySelector('input[name="chapulines"]:checked').value;
+            const patas = document.querySelector('input[name="patas"]:checked').value;
+            const fecha = document.getElementById("fecha").value;
+            
+            let ingredientes = [];
+            document.querySelectorAll('input[name="ingredientes"]:checked').forEach((checkbox) => {
+                ingredientes.push(checkbox.value);
+            });
+            ingredientes = ingredientes.join(", ");
+
+            // Crea una nueva fila con la información
+            const nuevaFila = `
+                <tr>
+                    <td>${cliente}</td>
+                    <td>${telefono}</td>
+                    <td>${tamano}</td>
+                    <td>${tipo}</td>
+                    <td>${chapulines}</td>
+                    <td>${patas}</td>
+                    <td>${ingredientes}</td>
+                    <td>${fecha}</td>
+                </tr>
+            `;
+
+            // Inserta la nueva fila al final del cuerpo de la tabla
+            document.getElementById("tablaCuerpo").insertAdjacentHTML('beforeend', nuevaFila);
+
+            // Muestra la tabla y el mensaje
+            document.getElementById("tablaInfo").style.display = "block";
+            document.getElementById("mensaje").style.display = "block";
+
+            // Limpia los campos del formulario después de agregar los datos
+            document.querySelector('form').reset();
+
+            // Evita el envío real del formulario
+            return false;
+        }
+    </script>
+</body>
+
+</html>
+

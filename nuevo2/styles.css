@@ -1,0 +1,45 @@
+/* Estilos globales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el contenedor principal */
+#contenedorPrincipal {
+    width: 100%;
+    height: calc(100vh - 70px); /* El contenedor principal ocupa el resto de la pantalla */
+    background-color: purple;
+    padding: 20px;
+}
+
+/* Contenedor del logo y menú */
+#header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;  /* Altura fija de 70px */
+    background-color: lightgray;
+}
+
+/* Estilos para el logo (70% del ancho) */
+#logo {
+    background-color: blue;
+    width: 70%;
+    height: 100%; /* Para ocupar el 100% de la altura del header */
+    color: white;
+    text-align: center;
+    line-height: 70px; /* Centrar verticalmente el texto */
+    font-size: 24px;
+}
+
+/* Estilos para el menú (30% del ancho) */
+#menu {
+    background-color: red;
+    width: 30%;
+    height: 100%; /* Para ocupar el 100% de la altura del header */
+    color: white;
+    text-align: center;
+    line-height: 70px; /* Centrar verticalmente el texto */
+    font-size: 24px;
+}

@@ -1,0 +1,39 @@
+
+/* Estilo para el enlace de Facebook */
+#facebook-link {
+    background-color: blue;  /* Fondo azul */
+    color: white;            /* Texto blanco */
+    width: 200px;            /* Ancho de 200px */
+    height: 20px;            /* Altura de 20px */
+}
+#contenedor1{
+            
+            width: 200px;
+            height: 40px;
+            background: blue;
+            display: inline-block; 
+
+            box-sizing: content-box;
+            width: 400px;
+            height: 160px;
+            padding: 10px;
+            padding: 10px;
+
+            border: 15px solid #000;
+
+        }
+        #contenedor2{
+            display: inline-block;
+            width: 200px;
+            height: 40px;
+            background: red;
+
+            box-sizing: border-box;
+            width: 400px;
+            height: 100px;
+            padding: 10px;
+
+            border: 15px solid #000;
+
+
+        }
